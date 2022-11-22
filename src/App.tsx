@@ -1,11 +1,13 @@
 import React from "react";
-import Form from "./components/Form";
+import Navbar from "./components/Navbar";
+import Main from "./components/Main";
 import "./App.css";
 
 function App() {
     return (
         <div className="App">
-            <Form />
+            <Navbar />
+            <Main />
         </div>
     );
 }

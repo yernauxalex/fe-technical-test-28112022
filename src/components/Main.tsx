@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from "react";
 import { getFlows, getRuns, getOutputs, getTrends } from "../utils/apiCalls";
 import Result from "./Result";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 
 // Type definition
 // Here flow_id is fixed to 1 because the api only works with this flow_id, but we could add a select input to choose the flow_id later
@@ -13,7 +14,7 @@ type Data = {
     trend: number;
 };
 
-const Form = () => {
+const Main = () => {
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     //state with the data from the api
     const [data, setData] = useState<Data[]>();
@@ -66,17 +67,38 @@ const Form = () => {
     };
 
     return (
-        <>
-            <form>
-                <input
-                    type="date"
-                    value={selectedDate.toUTCString()}
-                    onChange={(e) => setSelectedDate(new Date(e.target.value))}
-                />
-                <button onClick={onSubmit}>Submit</button>
-            </form>
-            {data ? <Result data={data} /> : null}
-        </>
+        <Container className="mt-5">
+            <Form>
+                <Form.Group
+                    as={Row}
+                    className="mb-3 d-flex justify-content-center"
+                >
+                    <Form.Label column md={2}>
+                        Select a date
+                    </Form.Label>
+                    <Col md={3} xs="auto">
+                        <Form.Control
+                            type="date"
+                            value={selectedDate.toUTCString()}
+                            onChange={(e) =>
+                                setSelectedDate(new Date(e.target.value))
+                            }
+                        />
+                    </Col>
+                    <Col md={1} xs="auto">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={onSubmit}
+                        >
+                            Submit
+                        </Button>
+                    </Col>
+                </Form.Group>
+            </Form>
+            {data && <Result data={data} />}
+        </Container>
     );
 };
-export default Form;
+
+export default Main;
