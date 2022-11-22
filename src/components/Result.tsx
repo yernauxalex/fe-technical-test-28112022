@@ -1,4 +1,5 @@
 import React from "react";
+import { Container, Table } from "react-bootstrap";
 
 //define the type of the props
 type Data = {
@@ -13,8 +14,8 @@ type Props = {
 
 const Result = ({ data }: Props) => {
     return (
-        <div>
-            <table>
+        <Container className="mt-5">
+            <Table bordered hover>
                 <thead>
                     <tr>
                         <th>Horizon Date</th>
@@ -31,8 +32,8 @@ const Result = ({ data }: Props) => {
                         </tr>
                     ))}
                 </tbody>
-            </table>
-        </div>
+            </Table>
+        </Container>
     );
 };
 
