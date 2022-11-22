@@ -21,8 +21,12 @@ const Main = () => {
 
     const onSubmit = async (e: FormEvent) => {
         e.preventDefault();
+        // Reset the data state
+        setData(undefined);
+        // convert date to UTC
+        const utcDate: Date = new Date(selectedDate.toUTCString());
         // convert date to iso format and remove the difference with UTC time because its converted on the input
-        const isoDate = selectedDate.toISOString().slice(0, -5) + "Z";
+        const isoDate: string = utcDate.toISOString().slice(0, -5) + "Z";
 
         await getFlows(flow_id).then((response) => {
             if (response === null) {
@@ -79,7 +83,7 @@ const Main = () => {
                     <Col md={3} xs="auto">
                         <Form.Control
                             type="date"
-                            value={selectedDate.toUTCString()}
+                            value={selectedDate.toISOString().slice(0, 10)}
                             onChange={(e) =>
                                 setSelectedDate(new Date(e.target.value))
                             }
