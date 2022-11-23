@@ -4,7 +4,7 @@ Build with ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&
 
 ## Installation
 
-Install the dependencies and devDependencies and start the server.
+Install the dependencies and start the server.
 
 ```sh
 cd fe-technical-test-28112022
